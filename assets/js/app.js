@@ -1,4 +1,4 @@
-var buttonEl = document.querySelector("#save-task");
+var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 var taskFormHandler = function () {
@@ -8,6 +8,13 @@ var taskFormHandler = function () {
     // get values from text field and drop down
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
+
+    if (!taskNameInput || !taskTypeInput) {
+        alert("You need to fill out the task form!");
+        return false;
+    }
+
+    formEl.reset();
 
     var taskDataObj = {
         name: taskNameInput,
@@ -30,4 +37,4 @@ var createTaskEl = function(taskDataObj) {
    tasksToDoEl.appendChild(listItemEl);
 }
 
-buttonEl.addEventListener("click", taskFormHandler);
+formEl.addEventListener("submit", taskFormHandler);
